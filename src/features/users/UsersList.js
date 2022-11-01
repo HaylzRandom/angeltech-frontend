@@ -1,6 +1,10 @@
+import EmployeeList from './EmployeeList';
+
 const UsersList = () => {
-  return (
-    <div>UsersList</div>
-  )
-}
-export default UsersList
+	return (
+		<section className='table-container'>
+			<EmployeeList />
+		</section>
+	);
+};
+export default UsersList;

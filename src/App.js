@@ -24,12 +24,12 @@ const App = () => {
 					<Route index element={<WelcomePage />} />
 
 					{/* Tickets Route */}
-					<Route path='/tickets'>
+					<Route path='tickets'>
 						<Route index element={<TicketsList />} />
 					</Route>
 
 					{/* Users Route */}
-					<Route path='/users'>
+					<Route path='users'>
 						<Route index element={<UsersList />} />
 					</Route>
 				</Route>
