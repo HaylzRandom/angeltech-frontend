@@ -3,7 +3,11 @@ import { createEntityAdapter, createSelector } from '@reduxjs/toolkit';
 // Slices
 import { apiSlice } from '../../../app/api/apiSlice';
 
-const ticketsAdapter = createEntityAdapter({});
+const ticketsAdapter = createEntityAdapter({
+	// Will put completed tickets towards bottom of list
+	sortComparer: (a, b) =>
+		a.completed === b.completed ? 0 : a.completed ? 1 : -1,
+});
 
 const initialState = ticketsAdapter.getInitialState();
 
@@ -33,16 +37,50 @@ export const ticketsApiSlice = apiSlice.injectEndpoints({
 				} else return [{ type: 'Ticket', id: 'LIST' }];
 			},
 		}),
+		addNewTicket: builder.mutation({
+			query: (initialTicket) => ({
+				url: '/tickets',
+				method: 'POST',
+				body: {
+					...initialTicket,
+				},
+			}),
+			invalidatesTags: [{ type: 'Ticket', id: 'LIST' }],
+		}),
+		updateTicket: builder.mutation({
+			query: (initialTicket) => ({
+				url: '/tickets',
+				method: 'PATCH',
+				body: {
+					...initialTicket,
+				},
+			}),
+			invalidatesTags: (result, error, arg) => [{ type: 'Ticket', id: arg.id }],
+		}),
+		deleteTicket: builder.mutation({
+			query: ({ id }) => ({
+				url: '/tickets',
+				method: 'DELETE',
+				body: { id },
+			}),
+			invalidatesTags: (result, error, arg) => [{ type: 'Ticket', id: arg.id }],
+		}),
 	}),
 });
 
 // Hooks
-export const { useGetTicketsQuery } = ticketsApiSlice;
+export const {
+	useGetTicketsQuery,
+	useAddNewTicketMutation,
+	useUpdateTicketMutation,
+	useDeleteTicketMutation,
+} = ticketsApiSlice;
 
 // Selectors
 
 // Returns query result object
-export const selectTicketsResult = ticketsApiSlice.endpoints.getTickets.select();
+export const selectTicketsResult =
+	ticketsApiSlice.endpoints.getTickets.select();
 
 // Creates memoized selector
 const selectTicketsData = createSelector(
