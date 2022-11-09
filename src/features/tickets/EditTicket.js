@@ -14,6 +14,7 @@ const EditTicket = () => {
 
 	const ticket = useSelector((state) => selectTicketByID(state, id));
 	const users = useSelector(selectAllUsers);
+	/* console.log(ticket); */
 
 	return ticket && users ? (
 		<EditTicketForm ticket={ticket} users={users} />

@@ -18,7 +18,6 @@ export const ticketsApiSlice = apiSlice.injectEndpoints({
 			validateStatus: (response, result) => {
 				return response.status === 200 && !result.isError;
 			},
-			keepUnusedDataFor: 5,
 			transformResponse: (responseData) => {
 				// Will map mongoDB ID to our ID
 				const loadedTickets = responseData.map((ticket) => {

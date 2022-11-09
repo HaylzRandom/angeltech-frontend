@@ -48,7 +48,7 @@ const EditUserForm = ({ user }) => {
 	}, [password]);
 
 	useEffect(() => {
-		console.log(isSuccess);
+		/* console.log(isSuccess); */
 
 		if (isSuccess || isDeleteSuccess) {
 			setUsername('');

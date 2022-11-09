@@ -51,8 +51,10 @@ const EditTicketForm = ({ ticket, users }) => {
 
 	const onSaveTicketClicked = async (e) => {
 		if (canSave) {
+			console.table([ticket.id, customer, title, text, completed, assigned]);
 			await updateTicket({
 				id: ticket.id,
+				category,
 				customer,
 				title,
 				text,
@@ -84,18 +86,18 @@ const EditTicketForm = ({ ticket, users }) => {
 		second: 'numeric',
 	});
 
-	const customerOptions = users.map((user) => {
+	const customerOptions = users.map((customer) => {
 		return (
-			<option key={user.id} value={user.id}>
-				{user.username}
+			<option key={customer.id} value={customer.id}>
+				{customer.username}
 			</option>
 		);
 	});
 
-	const employeeOptions = users.map((user) => {
+	const employeeOptions = users.map((employee) => {
 		return (
-			<option key={user.id} value={user.id}>
-				{user.username}
+			<option key={employee.id} value={employee.id}>
+				{employee.username}
 			</option>
 		);
 	});

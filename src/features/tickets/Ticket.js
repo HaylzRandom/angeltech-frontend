@@ -34,9 +34,9 @@ const Ticket = ({ ticketID }) => {
 						<span className='ticket__status--open'>Open</span>
 					)}
 				</td>
-				<td className='table__cell ticket__customer'>{ticket.customer}</td>
+				<td className='table__cell ticket__customer'>{ticket.customerName}</td>
 				<td className='table__cell ticket__title'>{ticket.title}</td>
-				<td className='table__cell ticket__assigned'>{ticket.assigned}</td>
+				<td className='table__cell ticket__assigned'>{ticket.assignedName}</td>
 				<td className='table__cell ticket__created'>{created}</td>
 				<td className='table__cell ticket__updated'>{updated}</td>
 				<td className='table__cell'>
