@@ -19,14 +19,14 @@ const NewUserForm = ({ user }) => {
 
 	const navigate = useNavigate();
 
-	const [username, setUsername] = useState(user.username);
+	const [username, setUsername] = useState('');
 	const [validUsername, setValidUsername] = useState(false);
 	const [password, setPassword] = useState('');
 	const [validPassword, setValidPassword] = useState(false);
-	const [email, setEmail] = useState(user.email);
-	const [firstName, setFirstName] = useState(user.firstName);
-	const [lastName, setLastName] = useState(user.lastName);
-	const [roles, setRoles] = useState(user.roles);
+	const [email, setEmail] = useState('');
+	const [firstName, setFirstName] = useState('');
+	const [lastName, setLastName] = useState('');
+	const [roles, setRoles] = useState(['Customer']);
 
 	// Validate Username
 	useEffect(() => {
@@ -139,8 +139,7 @@ const NewUserForm = ({ user }) => {
 				/>
 				{/* Password */}
 				<label htmlFor='password' className='form__label'>
-					Password: <span className='nowrap'>[empty = no change]</span>
-					<span className='nowrap'>[4-12 chars incl. !@#$%]</span>
+					Password: <span className='nowrap'>[4-12 chars incl. !@#$%]</span>
 				</label>
 				<input
 					className={`form__input ${validPasswordClass}`}

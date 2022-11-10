@@ -13,7 +13,11 @@ const TicketsList = () => {
 		isSuccess,
 		isError,
 		error,
-	} = useGetTicketsQuery();
+	} = useGetTicketsQuery(undefined, {
+		pollingInterval: 15000,
+		refetchOnFocus: true,
+		refetchOnMountOrArgChange: true,
+	});
 
 	if (isLoading) return <SyncLoader color='#6e36d6' />;
 

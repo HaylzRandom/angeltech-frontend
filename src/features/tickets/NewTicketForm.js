@@ -10,6 +10,7 @@ import { CATEGORIES } from '../../config/category';
 import { useAddNewTicketMutation } from './redux/ticketsApiSlice';
 
 const NewTicketForm = ({ users }) => {
+	console.log(users);
 	const [addNewTicket, { isLoading, isSuccess, isError, error }] =
 		useAddNewTicketMutation();
 
@@ -17,7 +18,7 @@ const NewTicketForm = ({ users }) => {
 
 	const [title, setTitle] = useState('');
 	const [text, setText] = useState('');
-	const [customer, setCustomer] = useState(users[0].id); // TODO: Set to current logged in user
+	const [customer, setCustomer] = useState(users[0].username); // TODO: Set to current logged in user
 	const [category, setCategory] = useState('');
 	const [assigned, setAssigned] = useState(null);
 

@@ -12,7 +12,11 @@ const EmployeeList = () => {
 		isSuccess,
 		isError,
 		error,
-	} = useGetUsersQuery();
+	} = useGetUsersQuery(undefined, {
+		pollingInterval: 60000,
+		refetchOnFocus: true,
+		refetchOnMountOrArgChange: true,
+	});
 
 	if (isLoading) return <SyncLoader color='#6e36d6' />;
 

@@ -8,7 +8,7 @@ import LoginPage from './features/auth/LoginPage';
 import UsersList from './features/users/UsersList';
 import TicketsList from './features/tickets/TicketsList';
 import EditTicket from './features/tickets/EditTicket';
-import NewTicketForm from './features/tickets/NewTicketForm';
+import NewTicket from './features/tickets/NewTicket';
 import EditUser from './features/users/EditUser';
 import NewUserForm from './features/users/NewUserForm';
 import PreFetch from './features/auth/PreFetch';
@@ -33,7 +33,7 @@ const App = () => {
 						<Route path='tickets'>
 							<Route index element={<TicketsList />} />
 							<Route path=':id' element={<EditTicket />} />
-							<Route path='new' element={<NewTicketForm />} />
+							<Route path='new' element={<NewTicket />} />
 						</Route>
 
 						{/* Users Route */}

@@ -18,7 +18,14 @@ const WelcomePage = () => {
 			</p>
 
 			<p>
+				<Link to='/dash/tickets/new'>Create a new Ticket</Link>
+			</p>
+			<p>
 				<Link to='/dash/users'>View User Settings</Link>
+			</p>
+
+			<p>
+				<Link to='/dash/users/new'>Create a new User</Link>
 			</p>
 		</section>
 	);
