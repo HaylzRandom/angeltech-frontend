@@ -12,6 +12,7 @@ import NewTicket from './features/tickets/NewTicket';
 import EditUser from './features/users/EditUser';
 import NewUserForm from './features/users/NewUserForm';
 import PreFetch from './features/auth/PreFetch';
+import PersistLogin from './features/auth/PersistLogin';
 
 // Pages
 import PublicPage from './pages/PublicPage';
@@ -25,26 +26,27 @@ const App = () => {
 				<Route index element={<PublicPage />} />
 				<Route path='login' element={<LoginPage />} />
 				{/* Protected Routes */}
-				<Route element={<PreFetch />}>
-					<Route path='dash' element={<DashboardPage />}>
-						<Route index element={<WelcomePage />} />
+				<Route element={<PersistLogin />}>
+					<Route element={<PreFetch />}>
+						<Route path='dash' element={<DashboardPage />}>
+							<Route index element={<WelcomePage />} />
 
-						{/* Tickets Route */}
-						<Route path='tickets'>
-							<Route index element={<TicketsList />} />
-							<Route path=':id' element={<EditTicket />} />
-							<Route path='new' element={<NewTicket />} />
-						</Route>
+							{/* Tickets Route */}
+							<Route path='tickets'>
+								<Route index element={<TicketsList />} />
+								<Route path=':id' element={<EditTicket />} />
+								<Route path='new' element={<NewTicket />} />
+							</Route>
 
-						{/* Users Route */}
-						<Route path='users'>
-							<Route index element={<UsersList />} />
-							<Route path=':id' element={<EditUser />} />
-							<Route path='new' element={<NewUserForm />} />
+							{/* Users Route */}
+							<Route path='users'>
+								<Route index element={<UsersList />} />
+								<Route path=':id' element={<EditUser />} />
+								<Route path='new' element={<NewUserForm />} />
+							</Route>
 						</Route>
 					</Route>
 				</Route>
-
 				{/* End of Protected Routes */}
 			</Route>
 		</Routes>

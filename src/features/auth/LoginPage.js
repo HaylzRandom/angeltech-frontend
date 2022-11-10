@@ -8,6 +8,7 @@ import { setCredentials } from './redux/authSlice';
 
 // Hooks
 import { useLoginMutation } from './redux/authApiSlice';
+import usePersist from '../../hooks/usePersist';
 
 const LoginPage = () => {
 	const userRef = useRef();
@@ -16,6 +17,7 @@ const LoginPage = () => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [errorMsg, setErrorMsg] = useState('');
+	const [persist, setPersist] = usePersist();
 
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -60,6 +62,7 @@ const LoginPage = () => {
 
 	const handleUserInput = (e) => setUsername(e.target.value);
 	const handlePwdInput = (e) => setPassword(e.target.value);
+	const handleToggle = () => setPersist((prev) => !prev);
 
 	const errorClass = errorMsg ? 'errorMsg' : 'offscreen';
 
@@ -102,6 +105,18 @@ const LoginPage = () => {
 
 					{/* Sign In Button */}
 					<button className='form__submit-button'>Sign In</button>
+
+					{/* Persist Checkbox */}
+					<label htmlFor='persist' className='form__persist'>
+						<input
+							type='checkbox'
+							className='form__checkbox'
+							id='persist'
+							onChange={handleToggle}
+							checked={persist}
+						/>
+						Trust This Device
+					</label>
 				</form>
 			</main>
 			<footer>

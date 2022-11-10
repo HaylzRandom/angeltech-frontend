@@ -13,7 +13,7 @@ const TicketsList = () => {
 		isSuccess,
 		isError,
 		error,
-	} = useGetTicketsQuery(undefined, {
+	} = useGetTicketsQuery('ticketsList', {
 		pollingInterval: 15000,
 		refetchOnFocus: true,
 		refetchOnMountOrArgChange: true,
@@ -21,7 +21,7 @@ const TicketsList = () => {
 
 	if (isLoading) return <SyncLoader color='#6e36d6' />;
 
-	if (isError) return <p className='errorMsg'>{error?.data.message}</p>;
+	if (isError) return <p className='errorMsg'>{error?.data?.message}</p>;
 
 	if (isSuccess) {
 		const { ids } = tickets;
