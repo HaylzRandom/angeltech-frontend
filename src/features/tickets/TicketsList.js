@@ -5,8 +5,11 @@ import Ticket from './Ticket';
 
 // Hooks
 import { useGetTicketsQuery } from './redux/ticketsApiSlice';
+import useAuth from '../../hooks/useAuth';
 
 const TicketsList = () => {
+	const { username, isManager, isAdmin, isEmployee, isCustomer } = useAuth();
+
 	const {
 		data: tickets,
 		isLoading,
@@ -24,11 +27,32 @@ const TicketsList = () => {
 	if (isError) return <p className='errorMsg'>{error?.data?.message}</p>;
 
 	if (isSuccess) {
-		const { ids } = tickets;
+		const { ids, entities } = tickets;
 
-		const tableContent = ids?.length
-			? ids.map((ticketID) => <Ticket key={ticketID} ticketID={ticketID} />)
-			: null;
+		let filteredIds;
+
+		if (isManager || isAdmin) {
+			// Manager and Admins will see all tickets
+			filteredIds = [...ids];
+		} else if (isEmployee) {
+			// Employees will only see tickets assigned to them or are not assigned
+			filteredIds = ids.filter(
+				(ticketID) =>
+					entities[ticketID].assignedName === username ||
+					entities[ticketID].assignedName === undefined
+			);
+		} else {
+			// Customers will only see tickets that they created or they are the customer
+			filteredIds = ids.filter(
+				(ticketID) => entities[ticketID].customerName === username
+			);
+		}
+
+		const tableContent =
+			filteredIds?.length &&
+			filteredIds.map((ticketID) => (
+				<Ticket key={ticketID} ticketID={ticketID} />
+			));
 
 		return (
 			<table className='table table--tickets'>
@@ -52,6 +76,7 @@ const TicketsList = () => {
 						<th scope='col' className='table__th ticket__updated'>
 							Updated
 						</th>
+
 						<th scope='col' className='table__th ticket__edit'>
 							Edit
 						</th>

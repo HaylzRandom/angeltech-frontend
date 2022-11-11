@@ -8,9 +8,16 @@ import { CATEGORIES } from '../../config/category';
 
 // Hooks
 import { useAddNewTicketMutation } from './redux/ticketsApiSlice';
+import useAuth from '../../hooks/useAuth';
 
 const NewTicketForm = ({ users }) => {
-	console.log(users);
+	const { username } = useAuth();
+
+	let defaultCustomer = users.filter(
+		(customer) => customer.username === username
+	);
+	/* console.log(defaultCustomer[0].username); */
+
 	const [addNewTicket, { isLoading, isSuccess, isError, error }] =
 		useAddNewTicketMutation();
 
@@ -18,7 +25,8 @@ const NewTicketForm = ({ users }) => {
 
 	const [title, setTitle] = useState('');
 	const [text, setText] = useState('');
-	const [customer, setCustomer] = useState(users[0].username); // TODO: Set to current logged in user
+	const [customerID, setCustomerID] = useState(defaultCustomer[0].id); // TODO: Set to current logged in user
+	const [customerName, setCustomerName] = useState(defaultCustomer[0].username);
 	const [category, setCategory] = useState('');
 	const [assigned, setAssigned] = useState(null);
 
@@ -26,7 +34,7 @@ const NewTicketForm = ({ users }) => {
 		if (isSuccess) {
 			setTitle('');
 			setText('');
-			setCustomer('');
+			setCustomerID('');
 			navigate('/dash/tickets');
 		}
 	}, [isSuccess, navigate]);
@@ -41,7 +49,13 @@ const NewTicketForm = ({ users }) => {
 	const onSaveTicketClicked = async (e) => {
 		e.preventDefault();
 		if (canSave) {
-			await addNewTicket({ customer, title, text, category, assigned: null });
+			await addNewTicket({
+				customer: customerID,
+				title,
+				text,
+				category,
+				assigned: null,
+			});
 		}
 	};
 
@@ -51,6 +65,21 @@ const NewTicketForm = ({ users }) => {
 				{category}
 			</option>
 		);
+	});
+
+	const customerInput = users.map((customer) => {
+		if (customer.username === username) {
+			<input
+				className={`form__input`}
+				id='customer'
+				name='customer'
+				type='text'
+				value={customer.id}
+				placeholder={customer.username}
+				readOnly
+			/>;
+		} else {
+		}
 	});
 
 	// CSS Classes
@@ -115,14 +144,15 @@ const NewTicketForm = ({ users }) => {
 				<label className='form__label' htmlFor='customer'>
 					Customer:
 				</label>
-				<input
-					className={`form__input`}
-					id='customer'
+				<select
 					name='customer'
-					type='text'
-					value={customer}
-					disabled={true}
-				/>
+					id='customer'
+					className='form__select'
+					value={customerID}
+					readOnly
+				>
+					<option value={customerID}>{customerName}</option>
+				</select>
 			</form>
 		</>
 	);

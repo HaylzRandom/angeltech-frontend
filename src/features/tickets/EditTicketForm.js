@@ -8,11 +8,14 @@ import {
 	useDeleteTicketMutation,
 	useUpdateTicketMutation,
 } from './redux/ticketsApiSlice';
+import useAuth from '../../hooks/useAuth';
 
 // Config
 import { CATEGORIES } from '../../config/category';
 
 const EditTicketForm = ({ ticket, users }) => {
+	const { isEmployee, isAdmin, isManager, isCustomer } = useAuth();
+
 	const [updateTicket, { isLoading, isSuccess, isError, error }] =
 		useUpdateTicketMutation();
 
@@ -87,19 +90,25 @@ const EditTicketForm = ({ ticket, users }) => {
 	});
 
 	const customerOptions = users.map((customer) => {
-		return (
-			<option key={customer.id} value={customer.id}>
-				{customer.username}
-			</option>
-		);
+		if (customer.roles.includes('Customer')) {
+			return (
+				<option key={customer.id} value={customer.id}>
+					{customer.username}
+				</option>
+			);
+		}
 	});
 
 	const employeeOptions = users.map((employee) => {
-		return (
-			<option key={employee.id} value={employee.id}>
-				{employee.username}
-			</option>
-		);
+		if (!employee.roles.includes('Customer')) {
+			return (
+				<option key={employee.id} value={employee.id}>
+					{employee.username}
+				</option>
+			);
+		} else {
+			return null;
+		}
 	});
 
 	const categoryOptions = Object.values(CATEGORIES).map((category) => {
@@ -184,69 +193,75 @@ const EditTicketForm = ({ ticket, users }) => {
 					onChange={onTextChanged}
 					className={`form__input ${validTextClass}`}
 				/>
+
 				<div className='form__row'>
-					<div className='form__divider'>
-						{/* Completed Status */}
-						<label
-							htmlFor='ticket-completed'
-							className='form__label form__checkbox-container'
-						>
-							WORK COMPLETE:
-							<input
-								type='checkbox'
-								id='ticket-completed'
-								name='completed'
-								checked={completed}
-								onChange={onCompletedChanged}
-								className='form__checkbox'
-							/>
-						</label>
-						{/* Assigned */}
-						<label
-							htmlFor='ticket-assigned'
-							className='form__label form__check--container'
-						>
-							ASSIGNED TO:
-						</label>
-						<select
-							name='assigned'
-							id='ticket-assigned'
-							className='form__select'
-							value={assigned}
-							onChange={onAssignedChanged}
-						>
-							<option value=''></option>
-							{employeeOptions}
-						</select>
-						{/* Customer */}
-						<label
-							htmlFor='ticket-assigned'
-							className='form__label form__check--container'
-						>
-							CUSTOMER:
-						</label>
-						<select
-							name='customer'
-							id='ticket-customer'
-							className='form__select'
-							value={customer}
-							onChange={onCustomerChanged}
-						>
-							{customerOptions}
-						</select>
-					</div>
-					<div className='form__divider'>
-						<p className='form__created'>
-							Created:
-							<br />
-							{created}
-						</p>
-						<p className='form__updated'>
-							Updated:
-							<br />
-							{updated}
-						</p>
-					</div>
+					{!isCustomer && (
+						<>
+							<div className='form__divider'>
+								{/* Completed Status */}
+								<label
+									htmlFor='ticket-completed'
+									className='form__label form__checkbox-container'
+								>
+									WORK COMPLETE:
+									<input
+										type='checkbox'
+										id='ticket-completed'
+										name='completed'
+										checked={completed}
+										onChange={onCompletedChanged}
+										className='form__checkbox'
+									/>
+								</label>
+
+								{/* Assigned */}
+								<label
+									htmlFor='ticket-assigned'
+									className='form__label form__check--container'
+								>
+									ASSIGNED TO:
+								</label>
+								<select
+									name='assigned'
+									id='ticket-assigned'
+									className='form__select'
+									value={assigned}
+									onChange={onAssignedChanged}
+								>
+									<option value=''></option>
+									{employeeOptions}
+								</select>
+								{/* Customer */}
+								<label
+									htmlFor='ticket-assigned'
+									className='form__label form__check--container'
+								>
+									CUSTOMER:
+								</label>
+								<select
+									name='customer'
+									id='ticket-customer'
+									className='form__select'
+									value={customer}
+									onChange={onCustomerChanged}
+								>
+									{customerOptions}
+								</select>
+							</div>
+							<div className='form__divider'>
+								<p className='form__created'>
+									Created:
+									<br />
+									{created}
+								</p>
+								<p className='form__updated'>
+									Updated:
+									<br />
+									{updated}
+								</p>
+							</div>
+						</>
+					)}
 				</div>
 			</form>
 		</>

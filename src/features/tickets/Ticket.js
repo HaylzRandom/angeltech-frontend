@@ -6,9 +6,17 @@ import { useNavigate } from 'react-router-dom';
 
 // Selectors
 import { selectTicketByID } from './redux/ticketsApiSlice';
+import useAuth from '../../hooks/useAuth';
 
 const Ticket = ({ ticketID }) => {
 	const ticket = useSelector((state) => selectTicketByID(state, ticketID));
+
+	const { username, isManager, isAdmin, isEmployee, isCustomer } = useAuth();
+
+	// TODO: Implement limited views of tickets
+	// Limit Customer to only see tickets with customer assigned to them
+	// Limit employees to only see their own assigned tickets or unassigned tickets
+	// Allow Managers and Admins to see all tickets
 
 	const navigate = useNavigate();
 
@@ -39,6 +47,7 @@ const Ticket = ({ ticketID }) => {
 				<td className='table__cell ticket__assigned'>{ticket.assignedName}</td>
 				<td className='table__cell ticket__created'>{created}</td>
 				<td className='table__cell ticket__updated'>{updated}</td>
+
 				<td className='table__cell'>
 					<button className='icon-button table__button' onClick={handleEdit}>
 						<FontAwesomeIcon icon={faPenToSquare} />
