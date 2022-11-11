@@ -145,13 +145,15 @@ const EditTicketForm = ({ ticket, users }) => {
 						>
 							<FontAwesomeIcon icon={faSave} />
 						</button>
-						<button
-							className='icon-button'
-							title='Delete'
-							onClick={onDeleteTicketClicked}
-						>
-							<FontAwesomeIcon icon={faTrashCan} />
-						</button>
+						{(isManager || isAdmin) && (
+							<button
+								className='icon-button'
+								title='Delete'
+								onClick={onDeleteTicketClicked}
+							>
+								<FontAwesomeIcon icon={faTrashCan} />
+							</button>
+						)}
 					</div>
 				</div>
 				{/* Title */}
