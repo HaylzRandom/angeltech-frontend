@@ -3,6 +3,7 @@ import { SyncLoader } from 'react-spinners';
 // Hooks
 import { useGetUsersQuery } from './redux/usersApiSlice';
 
+// Components
 import User from './User';
 
 const EmployeeList = () => {
@@ -23,11 +24,17 @@ const EmployeeList = () => {
 	if (isError) return <p className='errorMsg'>{error?.data.message}</p>;
 
 	if (isSuccess) {
-		const { ids } = users;
+		const { ids, entities } = users;
 
-		const tableContent = ids?.length
-			? ids.map((userID) => <User key={userID} userID={userID} />)
-			: null;
+		let filteredIds;
+
+		filteredIds = ids.filter((employeeID) => {
+			return !entities[employeeID].roles.includes('Customer');
+		});
+
+		const tableContent =
+			filteredIds?.length &&
+			filteredIds.map((userID) => <User key={userID} userID={userID} />);
 
 		return (
 			<>

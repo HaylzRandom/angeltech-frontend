@@ -265,7 +265,7 @@ tr {
 }
 
 .table--customers {
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
 
 /* || FORM - GENERAL */
@@ -362,7 +362,7 @@ tr {
   }
 
   .table--customers {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .table--tickets {
