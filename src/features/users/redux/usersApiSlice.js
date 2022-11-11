@@ -10,10 +10,13 @@ const initialState = usersAdapter.getInitialState();
 export const usersApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		getUsers: builder.query({
-			query: () => '/users',
-			validateStatus: (response, result) => {
-				return response.status === 200 && !result.isError;
-			},
+			query: () => ({
+				url: '/users',
+				validateStatus: (response, result) => {
+					return response.status === 200 && !result.isError;
+				},
+			}),
+
 			transformResponse: (responseData) => {
 				// Will map mongoDB ID to our ID
 				const loadedUsers = responseData.map((user) => {

@@ -1,9 +1,8 @@
-import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { SyncLoader } from 'react-spinners';
 
-// Selectors
-import { selectUserByID } from './redux/usersApiSlice';
+// Hooks
+import { useGetUsersQuery } from './redux/usersApiSlice';
 
 // Components
 import EditUserForm from './EditUserForm';
@@ -11,7 +10,11 @@ import EditUserForm from './EditUserForm';
 const EditUser = () => {
 	const { id } = useParams();
 
-	const user = useSelector((state) => selectUserByID(state, id));
+	const { user } = useGetUsersQuery('usersList', {
+		selectFromResult: ({ data }) => ({
+			user: data?.entities[id],
+		}),
+	});
 
 	return user ? <EditUserForm user={user} /> : <SyncLoader />;
 };

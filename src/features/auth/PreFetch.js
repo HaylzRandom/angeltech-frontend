@@ -10,17 +10,15 @@ import { usersApiSlice } from '../users/redux/usersApiSlice';
 
 const PreFetch = () => {
 	useEffect(() => {
-		/* console.log('Subscribing'); */
-		const tickets = store.dispatch(
-			ticketsApiSlice.endpoints.getTickets.initiate()
+		// Will prefetch tickets and users hooks using the inbuilt prefretch ability
+		store.dispatch(
+			ticketsApiSlice.util.prefetch('getTickets', 'ticketsList', {
+				force: true,
+			})
 		);
-		const users = store.dispatch(usersApiSlice.endpoints.getUsers.initiate());
-
-		return () => {
-			/* console.log('Unsubscribing'); */
-			tickets.unsubscribe();
-			users.unsubscribe();
-		};
+		store.dispatch(
+			usersApiSlice.util.prefetch('getUsers', 'usersList', { force: true })
+		);
 	}, []);
 
 	return <Outlet />;

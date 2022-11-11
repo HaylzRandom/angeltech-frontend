@@ -39,7 +39,7 @@ const NewUserForm = ({ user }) => {
 	}, [password]);
 
 	useEffect(() => {
-		console.log(isSuccess);
+		/* console.log(isSuccess); */
 
 		if (isSuccess) {
 			setUsername('');

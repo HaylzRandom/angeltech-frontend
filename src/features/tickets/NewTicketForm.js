@@ -25,7 +25,7 @@ const NewTicketForm = ({ users }) => {
 
 	const [title, setTitle] = useState('');
 	const [text, setText] = useState('');
-	const [customerID, setCustomerID] = useState(defaultCustomer[0].id); // TODO: Set to current logged in user
+	const [customerID, setCustomerID] = useState(defaultCustomer[0].id); // TODO: Research if cleaner method to do this
 	const [customerName, setCustomerName] = useState(defaultCustomer[0].username);
 	const [category, setCategory] = useState('');
 	const [assigned, setAssigned] = useState(null);

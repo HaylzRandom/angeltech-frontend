@@ -1,13 +1,18 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { memo } from 'react';
 
-// Selector
-import { selectUserByID } from './redux/usersApiSlice';
+// Hooks
+import { useGetUsersQuery } from './redux/usersApiSlice';
 
 const User = ({ userID }) => {
-	const user = useSelector((state) => selectUserByID(state, userID));
+	// Fetch specific user
+	const { user } = useGetUsersQuery('usersList', {
+		selectFromResult: ({ data }) => ({
+			user: data?.entities[userID],
+		}),
+	});
 
 	const navigate = useNavigate();
 
@@ -33,4 +38,8 @@ const User = ({ userID }) => {
 		);
 	} else return null;
 };
-export default User;
+
+// Will only cause re-render if changes in data;
+const memoizedUser = memo(User);
+
+export default memoizedUser;
