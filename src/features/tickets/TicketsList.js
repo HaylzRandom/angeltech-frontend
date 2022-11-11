@@ -6,8 +6,11 @@ import Ticket from './Ticket';
 // Hooks
 import { useGetTicketsQuery } from './redux/ticketsApiSlice';
 import useAuth from '../../hooks/useAuth';
+import useTitle from '../../hooks/useTitle';
 
 const TicketsList = () => {
+	useTitle('Angel Tech: Tickets List');
+
 	const { username, isManager, isAdmin, isEmployee, isCustomer } = useAuth();
 
 	const {

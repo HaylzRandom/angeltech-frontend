@@ -5,16 +5,15 @@ import { SyncLoader } from 'react-spinners';
 import { useGetTicketsQuery } from './redux/ticketsApiSlice';
 import { useGetUsersQuery } from '../users/redux/usersApiSlice';
 import useAuth from '../../hooks/useAuth';
-
-
+import useTitle from '../../hooks/useTitle';
 
 // Components
 import EditTicketForm from './EditTicketForm';
 
 const EditTicket = () => {
-	const { id } = useParams();
+	useTitle('Angel Tech: Edit Ticket');
 
-	const { username, isManager, isAdmin } = useAuth();
+	const { id } = useParams();
 
 	// Get specific ticket
 	const { ticket } = useGetTicketsQuery('ticketsList', {

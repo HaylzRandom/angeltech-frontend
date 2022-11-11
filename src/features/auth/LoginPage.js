@@ -9,8 +9,11 @@ import { setCredentials } from './redux/authSlice';
 // Hooks
 import { useLoginMutation } from './redux/authApiSlice';
 import usePersist from '../../hooks/usePersist';
+import useTitle from '../../hooks/useTitle';
 
 const LoginPage = () => {
+	useTitle('Portal Login');
+
 	const userRef = useRef();
 	const errorRef = useRef();
 

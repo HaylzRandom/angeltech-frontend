@@ -1,5 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 
+// Hooks
+import useTitle from './hooks/useTitle';
+
 // Components
 import Layout from './components/Layout';
 
@@ -24,6 +27,8 @@ import RequireAuth from './features/auth/RequireAuth';
 import { ROLES } from './config/roles';
 
 const App = () => {
+	useTitle('Angel Tech');
+
 	return (
 		<Routes>
 			<Route path='/' element={<Layout />}>

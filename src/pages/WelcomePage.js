@@ -2,9 +2,12 @@ import { Link } from 'react-router-dom';
 
 // Hooks
 import useAuth from '../hooks/useAuth';
+import useTitle from '../hooks/useTitle';
 
 const WelcomePage = () => {
 	const { username, isCustomer, isEmployee, isManager, isAdmin } = useAuth();
+
+	useTitle(`Angel Tech: ${username}`);
 
 	const date = new Date();
 	const today = new Intl.DateTimeFormat('en-gb', {
