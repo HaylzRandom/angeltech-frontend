@@ -50,13 +50,14 @@ and wanting to replicate the systems and if possible improve upon them
 - [ ] Create a custom loading spinner
 - [ ] Redesign website layout with new styles
 - [ ] Add a note system to tickets
-- [ ] Allow users to alter their own passwords (Only Admins and Managers can alter passwords)
+- [ ] Allow users to alter their own passwords (Only Admins and Managers can
+      alter passwords)
 - [ ] When tickets are updated, send an e-mail out
 - [ ] Implement TypeScript when more comfortable with it
 
 ## Demo
 
-[Demo Website](https://github.com)
+[Demo Website](https://angeltech-helpdesk.onrender.com/)
 
 Demo Gif
 

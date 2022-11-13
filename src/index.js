@@ -13,7 +13,9 @@ import './index.css';
 // Components
 import App from './App';
 
-if (process.env.NODE_ENV === 'production') disableReactDevTools();
+if (process.env.NODE_ENV === 'production') {
+	disableReactDevTools();
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

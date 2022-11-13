@@ -126,13 +126,11 @@ const EditUserForm = ({ user }) => {
 				firstName,
 				lastName,
 			].every(Boolean) && !isLoading;
-		console.log('Password Save', canSave);
 	} else {
 		canSave =
 			[roles.length, validUsername, email, firstName, lastName].every(
 				Boolean
 			) && !isLoading;
-		console.log('No Password Save', canSave);
 	}
 
 	// CSS Classes
