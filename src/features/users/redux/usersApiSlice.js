@@ -3,7 +3,10 @@ import { createEntityAdapter, createSelector } from '@reduxjs/toolkit';
 // Slices
 import { apiSlice } from '../../../app/api/apiSlice';
 
-const usersAdapter = createEntityAdapter({});
+const usersAdapter = createEntityAdapter({
+	// Will put completed tickets towards bottom of list
+	sortComparer: (a, b) => a.username.localeCompare(b.username),
+});
 
 const initialState = usersAdapter.getInitialState();
 

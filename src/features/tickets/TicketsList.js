@@ -11,7 +11,7 @@ import useTitle from '../../hooks/useTitle';
 const TicketsList = () => {
 	useTitle('Angel Tech: Tickets List');
 
-	const { username, isManager, isAdmin, isEmployee, isCustomer } = useAuth();
+	const { username, isManager, isAdmin, isEmployee } = useAuth();
 
 	const {
 		data: tickets,
@@ -49,6 +49,11 @@ const TicketsList = () => {
 			filteredIds = ids.filter(
 				(ticketID) => entities[ticketID].customerName === username
 			);
+		}
+
+		// If there are no tickets to be shown
+		if (!filteredIds.length) {
+			return <p className='errorMsg'>No tickets found!</p>;
 		}
 
 		const tableContent =

@@ -261,12 +261,34 @@ tr {
   color: var(--clr-status-complete);
 }
 
+/* Users */
+
 .table--employees {
   grid-template-columns: repeat(3, 1fr);
 }
 
 .table--customers {
   grid-template-columns: repeat(3, 1fr);
+}
+
+/* Testing Purposes */
+
+.testing__purposes {
+  display: grid;
+  gap: 1em;
+  margin-top: 1em;
+}
+
+.testing__title {
+  margin: 0.5em;
+}
+
+.table--testing {
+  grid-template-columns: repeat(3, 200px);
+}
+
+.testing__roles {
+  justify-content: start !important;
 }
 
 /* || FORM - GENERAL */

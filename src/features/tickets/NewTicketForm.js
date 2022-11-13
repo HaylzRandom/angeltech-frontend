@@ -27,8 +27,7 @@ const NewTicketForm = ({ users }) => {
 	const [text, setText] = useState('');
 	const [customerID, setCustomerID] = useState(defaultCustomer[0].id); // TODO: Research if cleaner method to do this
 	const [customerName, setCustomerName] = useState(defaultCustomer[0].username);
-	const [category, setCategory] = useState('');
-	const [assigned, setAssigned] = useState(null);
+	const [category, setCategory] = useState('Laptop');
 
 	useEffect(() => {
 		if (isSuccess) {
@@ -67,7 +66,8 @@ const NewTicketForm = ({ users }) => {
 		);
 	});
 
-	const customerInput = users.map((customer) => {
+	// TODO: Implement ability to choose from all customers but default to logged in user
+	/* const customerInput = users.map((customer) => {
 		if (customer.username === username) {
 			<input
 				className={`form__input`}
@@ -80,7 +80,7 @@ const NewTicketForm = ({ users }) => {
 			/>;
 		} else {
 		}
-	});
+	}); */
 
 	// CSS Classes
 	const errorClass = isError ? 'errorMsg' : 'offscreen';

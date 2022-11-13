@@ -14,7 +14,7 @@ import useAuth from '../../hooks/useAuth';
 import { CATEGORIES } from '../../config/category';
 
 const EditTicketForm = ({ ticket, users }) => {
-	const { isEmployee, isAdmin, isManager, isCustomer } = useAuth();
+	const { isAdmin, isManager, isCustomer } = useAuth();
 
 	const [updateTicket, { isLoading, isSuccess, isError, error }] =
 		useUpdateTicketMutation();
@@ -54,7 +54,6 @@ const EditTicketForm = ({ ticket, users }) => {
 
 	const onSaveTicketClicked = async (e) => {
 		if (canSave) {
-			console.table([ticket.id, customer, title, text, completed, assigned]);
 			await updateTicket({
 				id: ticket.id,
 				category,
@@ -96,6 +95,8 @@ const EditTicketForm = ({ ticket, users }) => {
 					{customer.username}
 				</option>
 			);
+		} else {
+			return null;
 		}
 	});
 
@@ -123,7 +124,6 @@ const EditTicketForm = ({ ticket, users }) => {
 	const errorClass = isError || isDeleteError ? 'errorMsg' : 'offscreen';
 	const validTitleClass = !title ? 'form__input--incomplete' : '';
 	const validTextClass = !text ? 'form__input--incomplete' : '';
-	const validCustomerClass = !customer ? 'form__input--incomplete' : '';
 
 	// Error Content
 	const errorContent =

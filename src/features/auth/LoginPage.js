@@ -121,6 +121,58 @@ const LoginPage = () => {
 						Trust This Device
 					</label>
 				</form>
+
+				<div className='testing__purposes'>
+					<h2 className='testing__title'>Testing Account Details</h2>
+					<table className='table table--testing'>
+						<thead className='table__thead'>
+							<tr>
+								<th className='table__th'>Username</th>
+								<th className='table__th'>Password</th>
+								<th className='table__th'>Roles</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr className='table__row'>
+								<td className='table__cell testing__username'>AdminUser</td>
+								<td className='table__cell testing__password'>!AdminUser01</td>
+								<td className='table__cell testing__roles'>Admin</td>
+							</tr>
+							<tr className='table__row'>
+								<td className='table__cell testing__username'>Manager</td>
+								<td className='table__cell testing__password'>
+									!ManagerUser01
+								</td>
+								<td className='table__cell testing__roles'>Manager</td>
+							</tr>
+							<tr className='table__row'>
+								<td className='table__cell testing__username'>Employee</td>
+								<td className='table__cell testing__password'>!Employee01</td>
+								<td className='table__cell testing__roles'>Employee</td>
+							</tr>
+							<tr className='table__row'>
+								<td className='table__cell testing__username'>CustomerOne</td>
+								<td className='table__cell testing__password'>!Customer01</td>
+								<td className='table__cell testing__roles'>Customer</td>
+							</tr>
+							<tr className='table__row'>
+								<td className='table__cell testing__username'>CustomerTwo</td>
+								<td className='table__cell testing__password'>!Customer02</td>
+								<td className='table__cell testing__roles'>Customer</td>
+							</tr>
+							<tr className='table__row'>
+								<td className='table__cell testing__username'>CustomerThree</td>
+								<td className='table__cell testing__password'>!Customer03</td>
+								<td className='table__cell testing__roles'>Customer</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<p>
+						I will be monitoring these accounts on a weekly basis. Any issues
+						please contact <a href='mailto:hayley.mcc@gmail.com'>me!</a>
+					</p>
+				</div>
 			</main>
 			<footer>
 				<Link to='/'>Back to Home</Link>
