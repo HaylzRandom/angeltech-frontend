@@ -115,7 +115,7 @@ const EditUserForm = ({ user }) => {
 		);
 	});
 
-	let canSave;
+	let canSave = false;
 	if (password) {
 		canSave =
 			[
@@ -126,11 +126,13 @@ const EditUserForm = ({ user }) => {
 				firstName,
 				lastName,
 			].every(Boolean) && !isLoading;
+		console.log('Password Save', canSave);
 	} else {
 		canSave =
 			[roles.length, validUsername, email, firstName, lastName].every(
 				Boolean
 			) && !isLoading;
+		console.log('No Password Save', canSave);
 	}
 
 	// CSS Classes
@@ -161,7 +163,7 @@ const EditUserForm = ({ user }) => {
 							className='icon-button'
 							title='Save'
 							onClick={onSaveUserClicked}
-							disabled={canSave}
+							disabled={!canSave}
 						>
 							<FontAwesomeIcon icon={faSave} />
 						</button>
