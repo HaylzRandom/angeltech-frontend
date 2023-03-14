@@ -2,22 +2,19 @@
 
 ## Table of Contents <!-- omit in toc -->
 
-- [About](#about)
-- [Technologies Used](#technologies-used)
+- [Description](#description)
+- [Technologies](#technologies)
 - [Linked Repositories](#linked-repositories)
-- [Author](#author)
+- [Packages](#packages)
 - [Roadmap](#roadmap)
 - [Demo](#demo)
 - [Screenshots](#screenshots)
 
-## About
+## Description
 
-This project was built as part of my on-going training utilising the MERN stack.
+A helpdesk application that allows users to login to an account, create tickets for technical issues, update tickets and admin users can create, delete and manage other user accounts. Client-side created using React. Server-side created using MongoDB for databse, Express.js and Node.js for API.
 
-The inspiration for this project came from using helpdesk systems many years ago
-and wanting to replicate the systems and if possible improve upon them
-
-## Technologies Used
+## Technologies
 
 ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
@@ -35,9 +32,20 @@ and wanting to replicate the systems and if possible improve upon them
   [AngelTech Frontend](https://github.com/HaylzRandom/angeltech-frontend)
 - Backend: [AngelTech API](https://github.com/HaylzRandom/angeltech-api)
 
-## Author
+## Packages
 
-[Hayley McCafferty](https://github.com/haylzrandom)
+<table>
+    <tr><th>Name</th><th>Description</th></tr>
+    <tr><td>@fortawesome</td><td>Fontawesome packages for React to enable use as components in React apps.</td></tr>
+    <tr><td>@fvilers/disable-react-devtools</td><td>A simple method to disable the React Developer Tools addon to access your application.</td></tr>
+    <tr><td>@reduxjs/toolkit</td><td>Used for state management to manage the state of users and tickets.</td></tr>
+    <tr><td>jwt-decode</td><td>Small browser library that helps decode JWTs token which are Base64Url encoded.</td></tr>
+    <tr><td>react</td><td>JavaScript library for building user interfaces</td></tr>
+    <tr><td>react-dom</td><td>Package that provides DOM-specific methods for React.</td></tr>
+    <tr><td>react-redux</td><td>Used for state management to manage the state users and allowing persistant login to occur throughout use of the applications.</td></tr>
+    <tr><td>react-router-dom</td><td>Enables client side routing navigation.</td></tr>
+    <tr><td>react-spinners</td><td>Package containing a collection of React spinners that are used for loading data.</td></tr>
+</table>
 
 ## Roadmap
 
