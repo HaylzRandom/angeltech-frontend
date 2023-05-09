@@ -1,11 +1,10 @@
-import { SyncLoader } from 'react-spinners';
-
 // Hooks
 import { useGetUsersQuery } from '../users/redux/usersApiSlice';
 import useTitle from '../../hooks/useTitle';
 
 // Components
 import NewTicketForm from './NewTicketForm';
+import Spinner from '../../components/Spinner';
 
 const NewTicket = () => {
 	useTitle('Angel Tech: New Ticket');
@@ -16,7 +15,7 @@ const NewTicket = () => {
 		}),
 	});
 
-	if (!users?.length) return <SyncLoader />;
+	if (!users?.length) return <Spinner />;
 
 	return <NewTicketForm users={users} />;
 };

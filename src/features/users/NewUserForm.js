@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSave, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { faSave } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -199,8 +199,7 @@ const NewUserForm = () => {
 					size='4'
 					value={roles}
 					onChange={onRolesChanged}
-					className={`form__select ${validRolesClass}`}
-				>
+					className={`form__select ${validRolesClass}`}>
 					{options}
 				</select>
 			</form>

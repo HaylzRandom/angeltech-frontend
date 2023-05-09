@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom';
-import { SyncLoader } from 'react-spinners';
 
 // Hooks
 import { useGetUsersQuery } from './redux/usersApiSlice';
@@ -7,6 +6,7 @@ import useTitle from '../../hooks/useTitle';
 
 // Components
 import EditUserForm from './EditUserForm';
+import Spinner from '../../components/Spinner';
 
 const EditUser = () => {
 	useTitle('Angel Tech: Edit User');
@@ -19,6 +19,6 @@ const EditUser = () => {
 		}),
 	});
 
-	return user ? <EditUserForm user={user} /> : <SyncLoader />;
+	return user ? <EditUserForm user={user} /> : <Spinner />;
 };
 export default EditUser;

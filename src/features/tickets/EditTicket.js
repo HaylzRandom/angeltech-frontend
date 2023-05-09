@@ -1,14 +1,13 @@
 import { useParams } from 'react-router-dom';
-import { SyncLoader } from 'react-spinners';
 
 // Hooks
 import { useGetTicketsQuery } from './redux/ticketsApiSlice';
 import { useGetUsersQuery } from '../users/redux/usersApiSlice';
-import useAuth from '../../hooks/useAuth';
 import useTitle from '../../hooks/useTitle';
 
 // Components
 import EditTicketForm from './EditTicketForm';
+import Spinner from '../../components/Spinner';
 
 const EditTicket = () => {
 	useTitle('Angel Tech: Edit Ticket');
@@ -29,7 +28,7 @@ const EditTicket = () => {
 		}),
 	});
 
-	if (!ticket || !users?.length) return <SyncLoader />;
+	if (!ticket || !users?.length) return <Spinner />;
 
 	return <EditTicketForm ticket={ticket} users={users} />;
 };

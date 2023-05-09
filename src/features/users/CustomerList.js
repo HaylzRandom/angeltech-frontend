@@ -1,10 +1,9 @@
-import { SyncLoader } from 'react-spinners';
-
 // Hooks
 import { useGetUsersQuery } from './redux/usersApiSlice';
 
 // Components
 import User from './User';
+import Spinner from '../../components/Spinner';
 
 const CustomerList = () => {
 	const {
@@ -19,7 +18,7 @@ const CustomerList = () => {
 		refetchOnMountOrArgChange: true,
 	});
 
-	if (isLoading) return <SyncLoader color='#6e36d6' />;
+	if (isLoading) return <Spinner />;
 
 	if (isError) return <p className='errorMsg'>{error?.data.message}</p>;
 

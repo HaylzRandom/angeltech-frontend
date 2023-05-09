@@ -1,7 +1,6 @@
-import { SyncLoader } from 'react-spinners';
-
 // Components
 import Ticket from './Ticket';
+import Spinner from '../../components/Spinner';
 
 // Hooks
 import { useGetTicketsQuery } from './redux/ticketsApiSlice';
@@ -25,7 +24,7 @@ const TicketsList = () => {
 		refetchOnMountOrArgChange: true,
 	});
 
-	if (isLoading) return <SyncLoader color='#6e36d6' />;
+	if (isLoading) return <Spinner />;
 
 	if (isError) return <p className='errorMsg'>{error?.data?.message}</p>;
 

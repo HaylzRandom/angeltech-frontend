@@ -1,7 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { SyncLoader } from 'react-spinners';
 
 // Actions
 import { setCredentials } from './redux/authSlice';
@@ -10,6 +9,9 @@ import { setCredentials } from './redux/authSlice';
 import { useLoginMutation } from './redux/authApiSlice';
 import usePersist from '../../hooks/usePersist';
 import useTitle from '../../hooks/useTitle';
+
+// Components
+import Spinner from '../../components/Spinner';
 
 const LoginPage = () => {
 	useTitle('Portal Login');
@@ -69,7 +71,7 @@ const LoginPage = () => {
 
 	const errorClass = errorMsg ? 'errorMsg' : 'offscreen';
 
-	if (isLoading) return <SyncLoader />;
+	if (isLoading) return <Spinner />;
 
 	return (
 		<section className='public'>
