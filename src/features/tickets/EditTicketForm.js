@@ -14,7 +14,7 @@ import useAuth from '../../hooks/useAuth';
 import { CATEGORIES } from '../../config/category';
 
 const EditTicketForm = ({ ticket, users }) => {
-	const { isAdmin, isManager, isCustomer } = useAuth();
+	const { isAdmin, isManager, isCustomer, id } = useAuth();
 
 	const [updateTicket, { isLoading, isSuccess, isError, error }] =
 		useUpdateTicketMutation();
@@ -32,6 +32,14 @@ const EditTicketForm = ({ ticket, users }) => {
 	const [customer, setCustomer] = useState(ticket.customer);
 	const [assigned, setAssigned] = useState(ticket.assigned);
 	const [category, setCategory] = useState(ticket.category);
+
+	// TODO: Check if cleaner way to check customer matches
+	useEffect(() => {
+		if (customer !== id && isCustomer) {
+			navigate('/dash/tickets');
+		}
+		// eslint-disable-next-line
+	}, []);
 
 	useEffect(() => {
 		if (isSuccess || isDeleteSuccess) {
@@ -141,16 +149,14 @@ const EditTicketForm = ({ ticket, users }) => {
 							className='icon-button'
 							title='Save'
 							onClick={onSaveTicketClicked}
-							disabled={!canSave}
-						>
+							disabled={!canSave}>
 							<FontAwesomeIcon icon={faSave} />
 						</button>
 						{(isManager || isAdmin) && (
 							<button
 								className='icon-button'
 								title='Delete'
-								onClick={onDeleteTicketClicked}
-							>
+								onClick={onDeleteTicketClicked}>
 								<FontAwesomeIcon icon={faTrashCan} />
 							</button>
 						)}
@@ -178,8 +184,7 @@ const EditTicketForm = ({ ticket, users }) => {
 					name='username'
 					className='form__select'
 					value={category}
-					onChange={onCategoryChanged}
-				>
+					onChange={onCategoryChanged}>
 					{categoryOptions}
 				</select>
 				{/* Text */}
@@ -203,8 +208,7 @@ const EditTicketForm = ({ ticket, users }) => {
 								{/* Completed Status */}
 								<label
 									htmlFor='ticket-completed'
-									className='form__label form__checkbox-container'
-								>
+									className='form__label form__checkbox-container'>
 									WORK COMPLETE:
 									<input
 										type='checkbox'
@@ -219,8 +223,7 @@ const EditTicketForm = ({ ticket, users }) => {
 								{/* Assigned */}
 								<label
 									htmlFor='ticket-assigned'
-									className='form__label form__check--container'
-								>
+									className='form__label form__check--container'>
 									ASSIGNED TO:
 								</label>
 								<select
@@ -228,16 +231,14 @@ const EditTicketForm = ({ ticket, users }) => {
 									id='ticket-assigned'
 									className='form__select'
 									value={assigned}
-									onChange={onAssignedChanged}
-								>
+									onChange={onAssignedChanged}>
 									<option value=''></option>
 									{employeeOptions}
 								</select>
 								{/* Customer */}
 								<label
 									htmlFor='ticket-assigned'
-									className='form__label form__check--container'
-								>
+									className='form__label form__check--container'>
 									CUSTOMER:
 								</label>
 								<select
@@ -245,8 +246,7 @@ const EditTicketForm = ({ ticket, users }) => {
 									id='ticket-customer'
 									className='form__select'
 									value={customer}
-									onChange={onCustomerChanged}
-								>
+									onChange={onCustomerChanged}>
 									{customerOptions}
 								</select>
 							</div>

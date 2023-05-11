@@ -142,9 +142,7 @@ const LoginPage = () => {
 							</tr>
 							<tr className='table__row'>
 								<td className='table__cell testing__username'>Manager</td>
-								<td className='table__cell testing__password'>
-									!ManagerUser01
-								</td>
+								<td className='table__cell testing__password'>!Manager01</td>
 								<td className='table__cell testing__roles'>Manager</td>
 							</tr>
 							<tr className='table__row'>

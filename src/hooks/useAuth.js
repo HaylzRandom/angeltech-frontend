@@ -15,7 +15,7 @@ const useAuth = () => {
 
 	if (token) {
 		const decoded = jwtDecode(token);
-		const { username, roles } = decoded.UserInfo;
+		const { username, roles, lastLogin, id } = decoded.UserInfo;
 
 		isCustomer = roles.includes('Customer');
 		isEmployee = roles.includes('Employee');
@@ -35,6 +35,8 @@ const useAuth = () => {
 			isEmployee,
 			isManager,
 			isAdmin,
+			lastLogin,
+			id,
 		};
 	}
 	return {

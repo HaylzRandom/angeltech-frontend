@@ -6,7 +6,13 @@ import { faHouse } from '@fortawesome/free-solid-svg-icons';
 import useAuth from '../../hooks/useAuth';
 
 const DashFooter = () => {
-	const { username, status } = useAuth();
+	const { username, status, isCustomer, lastLogin } = useAuth();
+
+	const date = new Date(lastLogin);
+	const loginDate = new Intl.DateTimeFormat('en-gb', {
+		dateStyle: 'medium',
+		timeStyle: 'medium',
+	}).format(date);
 
 	const navigate = useNavigate();
 
@@ -21,19 +27,41 @@ const DashFooter = () => {
 			<button
 				className='dash-footer__button icon-button'
 				title='Home'
-				onClick={onGoHomeClicked}
-			>
+				onClick={onGoHomeClicked}>
 				<FontAwesomeIcon icon={faHouse} />
 			</button>
 		);
 	}
 
-	return (
-		<footer className='dash-footer'>
-			{goHomeButton}
-			<p>Current User: {username}</p>
-			<p>Status: {status}</p>
-		</footer>
-	);
+	let content;
+
+	if (isCustomer) {
+		content = (
+			<footer className='dash-footer'>
+				<div className='dash-footer__stats'>
+					{goHomeButton}
+					<p>Current User: {username}</p>
+				</div>
+				<div className='dash-footer__login'>
+					<p>Last Login: {loginDate}</p>
+				</div>
+			</footer>
+		);
+	} else {
+		content = (
+			<footer className='dash-footer'>
+				<div className='dash-footer__stats'>
+					{goHomeButton}
+					<p>Current User: {username}</p>
+					<p>Status: {status}</p>
+				</div>
+				<div className='dash-footer__login'>
+					<p>Last Login: {loginDate}</p>
+				</div>
+			</footer>
+		);
+	}
+
+	return content;
 };
 export default DashFooter;

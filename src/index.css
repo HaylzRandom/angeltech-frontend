@@ -169,12 +169,22 @@ a:focus-visible {
 	bottom: 0;
 	z-index: 1;
 	background-color: var(--clr-bg);
-	padding: 0.5em;
+	padding: 1em;
 	border-top: 1px solid var(--clr-bc);
+	display: flex;
+	justify-content: space-between;
+}
+
+.dash-footer__stats {
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: flex-start;
+	align-items: center;
 	gap: 1em;
+}
+
+.dash-footer__login {
+	display: flex;
 }
 
 .dash-footer__button {

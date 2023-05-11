@@ -116,8 +116,7 @@ const NewTicketForm = ({ users }) => {
 				{/* Category */}
 				<label
 					className='form__label form__checkbox-container'
-					htmlFor='category'
-				>
+					htmlFor='category'>
 					CATEGORY:
 				</label>
 				<select
@@ -125,8 +124,7 @@ const NewTicketForm = ({ users }) => {
 					name='category'
 					className='form__select'
 					value={category}
-					onChange={onCategoryChanged}
-				>
+					onChange={onCategoryChanged}>
 					{categoryOptions}
 				</select>
 				{/* Text */}
@@ -149,8 +147,7 @@ const NewTicketForm = ({ users }) => {
 					id='customer'
 					className='form__select'
 					value={customerID}
-					readOnly
-				>
+					readOnly>
 					<option value={customerID}>{customerName}</option>
 				</select>
 			</form>

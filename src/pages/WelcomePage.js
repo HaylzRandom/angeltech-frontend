@@ -9,19 +9,11 @@ const WelcomePage = () => {
 
 	useTitle(`Angel Tech: ${username}`);
 
-	const date = new Date();
-	const today = new Intl.DateTimeFormat('en-gb', {
-		dateStyle: 'full',
-		timeStyle: 'long',
-	}).format(date);
-
 	let content;
 
 	if (isCustomer) {
 		content = (
 			<section className='welcome'>
-				<p>{today}</p>
-
 				<h1>Welcome {username}!</h1>
 
 				<p>
@@ -38,8 +30,6 @@ const WelcomePage = () => {
 	if (isEmployee) {
 		content = (
 			<section className='welcome'>
-				<p>{today}</p>
-
 				<h1>Welcome {username}!</h1>
 
 				<p>
@@ -56,8 +46,6 @@ const WelcomePage = () => {
 	if (isManager || isAdmin) {
 		content = (
 			<section className='welcome'>
-				<p>{today}</p>
-
 				<h1>Welcome {username}!</h1>
 
 				<p>
